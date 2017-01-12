@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="119e3d9f-2ece-4f9b-94d8-497c5b4b54c3" name="139" url="http://139.196.178.86">
+        <fileTransfer host="139.196.178.86" port="22" rootFolder="/mnt/wwwroot/ileou_com/demo/WXPay" accessType="SFTP" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

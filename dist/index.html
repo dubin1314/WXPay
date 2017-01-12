@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <p>请输入打赏金额</p>
+        <input type="text" id="payInput">
+        <input type="button" value="打赏" id="surePay">
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            /*配置微信config*/
+            $.getJSON("http://demo.ileou.com/newello/index.php/Thirdpart/Index/getWeixinAuthor", function (n) {
+                if ("" != n.appid) {
+                    var e = n;
+                    wx.config({
+                        debug: !1,
+                        appId: e.appid,
+                        timestamp: e.timestamp,
+                        nonceStr: e.noncestr,
+                        signature: e.signature,
+                        jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareWeibo"]
+                    }), wx.ready(function () {
+                        DS.ready(function () {
+                            DS.sendAuthUserInfo(userInfo, n.appId);
+                            setsharemsg()
+                        })
+
+                    })
+                }
+            });
+
+            /*发起一个微信支付请求*/
+            wx.chooseWXPay({
+                timestamp: 0, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                nonceStr: '', // 支付签名随机串，不长于 32 位
+                package: '', // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                signType: '', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                paySign: '', // 支付签名
+                success: function (res) {
+                    // 支付成功后的回调函数
+                }
+            });
+        </script>
+
+
+    </body>
+</html>
