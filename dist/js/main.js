@@ -52,7 +52,7 @@ function jsApiCall(data,orderId){
             if (res.err_msg == "get_brand_wcpay_request:ok") {
                 confirmOrder(orderId);
             } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                alert("订单已取消，但依然感谢您!");
+                alert("订单已取消，但依然感谢您!...");
             } else {
                 alert(res.err_msg);
             }
